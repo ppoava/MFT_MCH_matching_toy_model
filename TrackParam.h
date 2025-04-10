@@ -1,4 +1,7 @@
 // TrackParam.h
+// Based on https://github.com/AliceO2Group/AliceO2/blob/dev/Detectors/MUON/MCH/Tracking/include/MCHTracking/TrackParam.h#L1
+#include "Rtypes.h"
+#include "TMatrixD.h"
 
 class TrackParam
 {
@@ -105,7 +108,7 @@ class TrackParam
   /// set the local chi2 of the associated cluster with respect to the track
   void setLocalChi2(Double_t chi2) { mLocalChi2 = chi2; }
 
-  TrackParamStruct getTrackParamStruct() const;
+  // TrackParamStruct getTrackParamStruct() const;
 
   Bool_t isCompatibleTrackParam(const TrackParam& trackParam, Double_t sigma2Cut, Double_t& normChi2) const;
 
@@ -130,22 +133,22 @@ class TrackParam
   ///    <X,Y>      <Y,SlopeX>        <Y,Y>      <Y,SlopeY>       <Y,InvP_yz>
   /// <X,SlopeY>  <SlopeX,SlopeY>  <Y,SlopeY>  <SlopeY,SlopeY>  <SlopeY,InvP_yz>
   /// <X,InvP_yz> <SlopeX,InvP_yz> <Y,InvP_yz> <SlopeY,InvP_yz> <InvP_yz,InvP_yz>  </pre>
-  mutable std::unique_ptr<TMatrixD> mCovariances{}; ///< \brief Covariance matrix of track parameters
+  // mutable std::unique_ptr<TMatrixD> mCovariances{}; ///< \brief Covariance matrix of track parameters
 
   /// Jacobian used to extrapolate the track parameters and covariances to the actual z position
-  mutable std::unique_ptr<TMatrixD> mPropagator{};
+  // mutable std::unique_ptr<TMatrixD> mPropagator{};
   /// Track parameters extrapolated to the actual z position (not filtered by Kalman)
-  mutable std::unique_ptr<TMatrixD> mExtrapParameters{};
+  // mutable std::unique_ptr<TMatrixD> mExtrapParameters{};
   /// Covariance matrix extrapolated to the actual z position (not filtered by Kalman)
-  mutable std::unique_ptr<TMatrixD> mExtrapCovariances{};
+  // mutable std::unique_ptr<TMatrixD> mExtrapCovariances{};
 
-  mutable std::unique_ptr<TMatrixD> mSmoothParameters{};  ///< Track parameters obtained using smoother
-  mutable std::unique_ptr<TMatrixD> mSmoothCovariances{}; ///< Covariance matrix obtained using smoother
+  // mutable std::unique_ptr<TMatrixD> mSmoothParameters{};  ///< Track parameters obtained using smoother
+  // mutable std::unique_ptr<TMatrixD> mSmoothCovariances{}; ///< Covariance matrix obtained using smoother
 
-  const Cluster* mClusterPtr = nullptr; ///< Pointer to the associated cluster if any
+  // const Cluster* mClusterPtr = nullptr; ///< Pointer to the associated cluster if any
 
-  Bool_t mRemovable = false; ///< kTRUE if the associated cluster can be removed from the track it belongs to
+  // Bool_t mRemovable = false; ///< kTRUE if the associated cluster can be removed from the track it belongs to
 
-  Double_t mTrackChi2 = 0.; ///< Chi2 of the track when the associated cluster was attached
-  Double_t mLocalChi2 = 0.; ///< Local chi2 of the associated cluster with respect to the track
+  // Double_t mTrackChi2 = 0.; ///< Chi2 of the track when the associated cluster was attached
+  // Double_t mLocalChi2 = 0.; ///< Local chi2 of the associated cluster with respect to the track
 };
